@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-
+import { NavLink } from 'react-router-dom';
 import '../styles/globals.css';
 
 const Header = () => {
@@ -9,6 +9,7 @@ const Header = () => {
   const handleLinks = () => {
     setLinks(!links);
   };
+
   return (
     <div className='header'>
       <nav className='navbar'>
@@ -19,14 +20,14 @@ const Header = () => {
             </Link>
           </li>
           <li>
-            <Link to='/' className='navbarLi' onClick={handleLinks}>
+            <NavLink to='/' className='navbarLi' onClick={handleLinks}>
               Astronomy Picture of the day
-            </Link>
+            </NavLink>
           </li>
           <li>
-            <Link to='/' className='navbarLi' onClick={handleLinks}>
+            <NavLink to='/' className='navbarLi' onClick={handleLinks}>
               Share a picture
-            </Link>
+            </NavLink>
           </li>
         </ul>
       </nav>

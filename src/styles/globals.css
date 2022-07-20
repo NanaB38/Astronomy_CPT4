@@ -57,26 +57,41 @@ video {
   color: black;
 }
 
-.headerContainer {
-}
+/* .headerContainer {
+} */
 
 .navbar {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   height: 50px;
-}
-
-.navbar ul {
-  list-style-type: none;
-  text-decoration: none;
-  display: flex;
-  flex-direction: row;
-  padding: 15px;
+  z-index: 100 !important;
 }
 
 .navbarLi {
-  padding: 0 2rem;
-  justify-content: space-between;
   text-decoration: none;
+  padding: 15px;
+}
+
+.navLinks li:hover {
+  cursor: pointer;
+  color: blue;
+}
+
+.navLinks {
+  list-style-type: none;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+/* nav ul li:hover {
+  cursor: pointer;
+  color: blue;
+} */
+
+@media only screen and (max-width: 860px) {
+  .navLinks {
+    visibility: hidden;
+  }
 }
