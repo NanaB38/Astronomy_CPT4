@@ -1,0 +1,82 @@
+@import url('https://fonts.googleapis.com/css2?family=Quantico&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #f5f5f5;
+  font-family: 'Quantico', 'Trebuchet MS', 'Lucida Sans Unicode',
+    'Lucida Grande', 'Lucida Sans';
+}
+
+.home {
+  height: 100vh;
+  width: 100%;
+}
+
+video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.homeContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+.header {
+  background-color: black;
+  width: 100%;
+}
+
+.logoNasa {
+  display: flex;
+  top: 0;
+  left: 0;
+  margin: 2%;
+  position: absolute;
+}
+
+#selectPlanet {
+  color: black;
+}
+
+.headerContainer {
+}
+
+.navbar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  height: 50px;
+}
+
+.navbar ul {
+  list-style-type: none;
+  text-decoration: none;
+  display: flex;
+  flex-direction: row;
+  padding: 15px;
+}
+
+.navbarLi {
+  padding: 0 2rem;
+  justify-content: space-between;
+  text-decoration: none;
+}
