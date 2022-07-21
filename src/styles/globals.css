@@ -21,7 +21,22 @@ video {
 }
 
 button {
+  color: white;
   cursor: pointer;
+  border-radius: 30px;
+  background: rgb(186, 219, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(186, 219, 255, 1) 0%,
+    rgba(0, 59, 150, 1) 35%,
+    rgba(2, 8, 19, 1) 100%
+  );
+  width: 30%;
+  padding: 10px;
+}
+
+button:hover {
+  transform: scale(1.1);
 }
 
 .container {

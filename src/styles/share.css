@@ -8,15 +8,53 @@
   color: white;
 }
 
-.pics-container {
-  display: grid;
+.share-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin: 5%;
+}
+
+.title-share {
+  margin: 3%;
+  text-align: center;
   width: 80%;
-  margin-left: 5%;
-  margin-top: 20px;
-  grid-template-columns: repeat(1, 1fr);
+}
+
+.buttons {
+  margin: 3%;
+}
+
+#share-it {
+  width: 100%;
+}
+
+.pics-container {
+  display: flex;
+  width: 80vw;
+  margin-top: 5%;
   padding-bottom: 8%;
 }
 
 .pics-list {
+  align-items: center;
+  justify-content: center;
+  margin-right: 3%;
+}
+
+.pics-list {
   width: 25vw;
+}
+
+.planet-name {
+  font-size: xx-large;
+}
+
+.planet-det {
+  color: rgb(210, 210, 210);
+}
+
+.delete-btn:hover {
+  cursor: pointer;
 }

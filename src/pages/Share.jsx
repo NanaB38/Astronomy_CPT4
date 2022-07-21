@@ -9,7 +9,6 @@ function Share() {
   const [pics, setPics] = useState([]);
   const [form, setForm] = useState({ name: '', picture: '', details: '' });
   // const [deletePic, setDeletePic] = useState(false);
-  const [idToDelete, setIdToDelete] = useState('');
   const [toShare, setToShare] = useState(false);
 
   useEffect(() => {
@@ -38,7 +37,7 @@ function Share() {
   const handleDelete = (id) => {
     axios
       .delete(`http://localhost:3001/planets/${id}`)
-      .then(() => setPics(pics.filter((pic) => id !== pic.id)))
+      .then(() => setPics(pics.filter((p) => id !== p.id)))
 
       .catch((err) => console.error(err));
   };
@@ -50,17 +49,19 @@ function Share() {
   return (
     <>
       <div className='share'>
-        <h2 className='title-share'>
-          If you like, you can share an astronomy picture of GIF to the Wild
-          Code School Community
-        </h2>
-        <h3>
-          Here is a selection the most beautiful pictures of our planets, the
-          sky and the moon...
-        </h3>
-        <button className='button-share' type='button' onClick={handleSharePic}>
-          Share a picture
-        </button>
+        <div className='share-container'>
+          <h2 className='title-share'>
+            If you like, you can share an astronomy picture of GIF to the Wild
+            Code School Community
+          </h2>
+          <h3>
+            Here is a selection the most beautiful pictures of our planets, the
+            sky and the moon...
+          </h3>
+          <button className='buttons' type='button' onClick={handleSharePic}>
+            Share a picture
+          </button>
+        </div>
         <>
           {toShare && (
             <form className='form-share' onSubmit={handleSubmitPic}>
@@ -106,7 +107,12 @@ function Share() {
                   required
                 />
               </div>
-              <button type='submit' onClick={handleSubmitPic}>
+              <button
+                type='submit'
+                onClick={handleSubmitPic}
+                className='buttons'
+                id='share-it'
+              >
                 Share it !
               </button>
             </form>
@@ -116,14 +122,15 @@ function Share() {
         {pics.map((pic) => (
           <div className='pics-container' key={pic.id} id={pic.id}>
             <img src={pic.picture} alt={pic.name} className='pics-list' />
-            <p>{pic.name}</p>
-            <p>{pic.details}</p>
-            <div onClick={() => handleDelete(idToDelete)}>
-              <AiOutlineDelete />
+            <div>
+              <p className='planet-name'>{pic.name}</p>
+              <p className='planet-det'>{pic.details}</p>
+              <div onClick={() => handleDelete()} className='delete-btn'>
+                <AiOutlineDelete />
+              </div>
             </div>
           </div>
         ))}
-        <p></p>
       </div>
     </>
   );
