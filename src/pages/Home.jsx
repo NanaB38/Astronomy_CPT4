@@ -12,9 +12,8 @@ function Home() {
   useEffect(() => {
     axios
       .get(
-        'https://api.nasa.gov/planetary/apod?api_key=qEZqOhHNDtTP8sacKzgmhZWJEt4PTViHsMkv6ZMj'
+        `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_KEY}`
       )
-      // .then((res) => console.log(res.data));
       .then((res) => setNasaPic(res.data));
   }, []);
 
