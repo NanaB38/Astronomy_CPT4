@@ -1,16 +1,19 @@
 import React from 'react';
-import Navbar from './components/Navbar';
-import Main from './components/Main';
-// import Footer from './components/Footer';
+import { Route, Routes } from 'react-router-dom';
+import Home from './pages/Home';
+import Share from './pages/Share';
 import './styles/globals.css';
+import './styles/index.css';
 
-function App() {
+export default function Main() {
   return (
     <>
-      <Navbar />
-      <Main />
-      {/* <Footer /> */}
+      <div className='main'>
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path='/share' element={<Share />} />
+        </Routes>
+      </div>
     </>
   );
 }
-export default App;
