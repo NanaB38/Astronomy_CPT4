@@ -1,8 +1,22 @@
 .share {
-  background-color: #06223c;
+  background-color: #03192d;
   width: 100vw;
-  height: 98vh;
+  height: fit-content;
   display: flex;
   flex-direction: column;
   align-items: center;
+  color: white;
+}
+
+.pics-container {
+  display: grid;
+  width: 80%;
+  margin-left: 5%;
+  margin-top: 20px;
+  grid-template-columns: repeat(1, 1fr);
+  padding-bottom: 8%;
+}
+
+.pics-list {
+  width: 25vw;
 }

@@ -2,13 +2,6 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
-  // const [links, setLinks] = useState(false);
-  const [picNasa, setPicNasa] = useState(false);
-
-  const handleShowPic = () => {
-    setPicNasa(!picNasa);
-  };
-
   return (
     <nav className='navbar'>
       <ul className='navLinks'>
@@ -18,10 +11,12 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <div onClick={handleShowPic}>Astronomy Picture of the day</div>
+          <Link to='/TodayPic' className='navbarLi'>
+            Astronomy Picture of the day
+          </Link>
         </li>
         <li>
-          <Link to='/' className='navbarLi'>
+          <Link to='/share' className='navbarLi'>
             Share a picture
           </Link>
         </li>

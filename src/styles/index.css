@@ -1,10 +1,10 @@
-@tailwind base;
+/* @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer base {
   body {
-    @apply bg-[#06223c] text-[#ff8080] tracking-wide;
+    @apply bg-[#06223c] tracking-wide;
   }
   h1,
   h2,
@@ -27,4 +27,4 @@
   nav {
     @apply opacity-100 z-40;
   }
-}
+} */

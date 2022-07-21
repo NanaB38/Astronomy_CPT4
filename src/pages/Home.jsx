@@ -3,34 +3,47 @@ import axios from 'axios';
 import videoBg from '../assets/videoBg.mp4';
 import nasaLogo from '../assets/images/nasa-logo-1280x1059.png';
 import { Link } from 'react-router-dom';
-// import TodayPic from '../components/TodayPic';
+import TodayPic from '../components/TodayPic';
 import PlanetDetails from '../components/PlanetDetails';
+// import { useParams } from 'react-router-dom';
 import '../styles/globals.css';
 import '../styles/index.css';
 
 function Home() {
-  // const [nasaPic, setNasaPic] = useState('');
-  const [planet, setPlanet] = useState([]);
+  // const { id } = useParams();
+  const [nasaPic, setNasaPic] = useState(false);
+  const [planetList, setPlanetList] = useState([]);
   const [filterPlanet, setFilterPlanet] = useState('');
   const [infoPlanet, setInfoPlanet] = useState([]);
-
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       `https://api.nasa.gov/planetary/apod?api_key=${process.env.REACT_APP_KEY}`
-  //     )
-  //     .then((res) => setNasaPic(res.data));
-  // }, []);
+  const [modalPlanet, setModalPlanet] = useState(false);
+  const [home, setHome] = useState(true);
 
   useEffect(() => {
     axios
       .get('http://localhost:3001/planets')
-      .then((res) => setPlanet(res.data));
-    // setInfoPlanet(res.data);
+      .then((res) => setPlanetList(res.data));
   }, []);
 
-  const handleChange = (value) => {
-    setFilterPlanet(value);
+  const showPlanets = () => {
+    axios
+      .get('http://localhost:3001/planets')
+      .then((res) => setInfoPlanet(res.data))
+      .catch(() => console.error('selecter is not working'));
+  };
+
+  const handleShowPlanet = () => {
+    showPlanets();
+    setModalPlanet(!modalPlanet);
+  };
+
+  const handleChange = () => {
+    setFilterPlanet();
+    handleShowPlanet();
+  };
+
+  const changeView = () => {
+    setNasaPic(!nasaPic);
+    setHome(!home);
   };
 
   return (
@@ -43,40 +56,61 @@ function Home() {
             <img src={nasaLogo} alt='nasa-logo' width={'90px'} />
           </Link>
         </div>
-        <h1 className='titleHome text-yellow-200'>Welcome Earthlings !</h1>
-        <p className='intro'>
-          In this app, you can find incredible pictures of planets and galaxies
-        </p>
-        <form className='selecter'>
-          <label htmlFor='selectPlanet' className=''>
-            <select
-              id='selectPlanet'
-              onChange={(e) => handleChange(e.target.value)}
-            >
-              <option value=''>Choose an astronomy picture</option>
-              <option value='all'>All planets</option>
-              {planet.map((pl) => (
-                <option key={pl.id} value={pl.id}>
-                  {pl.name}
-                </option>
-              ))}
-            </select>
-          </label>
-        </form>{' '}
-        <ul className='planets-list'>
-          <li lassName='planet-item'>
-            {infoPlanet
-              .filter((fil) =>
-                fil.name === filterPlanet ? filterPlanet : !filterPlanet
-              )
-              .map((planets) => (
-                <Link to={`/planets/${planets.id}`} key={planets.id}>
-                  <PlanetDetails planets={planets} />
-                </Link>
-              ))}
-          </li>
-        </ul>
-        {/* <TodayPic nasaPic={nasaPic} /> */}
+        {home && (
+          <>
+            <h1 className='titleHome'>Welcome Earthlings !</h1>
+            <p className='intro'>
+              In this app, you can find incredible pictures of planets and
+              galaxies
+            </p>
+            <form className='selecter'>
+              <label htmlFor='selectPlanet' className=''>
+                <select
+                  id='selectPlanet'
+                  onChange={(e) => handleChange(e.target.value)}
+                >
+                  <option value=''>Choose an astronomy picture</option>
+                  <option key='id' value='all'>
+                    All planets
+                  </option>
+                  {planetList.map((pl) => (
+                    <option key={pl.id} value={pl.name}>
+                      {pl.name}
+                    </option>
+                  ))}
+                </select>
+              </label>
+            </form>
+            <ul className='planets-list'>
+              {infoPlanet
+                .filter((fil) =>
+                  fil.name === 'Hearth' ? modalPlanet : !modalPlanet
+                )
+                .map((planets) => (
+                  <li className='planet-item'>
+                    <PlanetDetails
+                      key={planets.id}
+                      id={planets.id}
+                      planets={planets}
+                      modalPlanet={modalPlanet}
+                    />
+                  </li>
+                ))}
+            </ul>
+            <p className='or'>OR</p>
+            <button type='button' onClick={changeView}>
+              See Astronomy Picture of the day
+            </button>
+          </>
+        )}
+        {nasaPic && (
+          <TodayPic
+            nasaPic={nasaPic}
+            setNasaPic={setNasaPic}
+            setHome={setHome}
+            home={home}
+          />
+        )}
       </div>
     </div>
   );
