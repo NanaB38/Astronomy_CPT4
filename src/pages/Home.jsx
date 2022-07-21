@@ -1,27 +1,25 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../styles/globals.css';
 import videoBg from '../assets/videoBg.mp4';
 import nasaLogo from '../assets/images/nasa-logo-1280x1059.png';
 import { Link } from 'react-router-dom';
-import Navbar from '../components/Navbar';
-import todayPic from '../components/todayPic';
+import TodayPic from '../components/TodayPic';
 
 function Home() {
   const [nasaPic, setNasaPic] = useState('');
 
-  // useEffect(() => {
-  axios
-    .get(
-      'https://api.nasa.gov/planetary/apod?api_key=qEZqOhHNDtTP8sacKzgmhZWJEt4PTViHsMkv6ZMj'
-    )
-    // .then((res) => console.log(res.data));
-    .then((res) => setNasaPic(res.data));
-  // }, []);
+  useEffect(() => {
+    axios
+      .get(
+        'https://api.nasa.gov/planetary/apod?api_key=qEZqOhHNDtTP8sacKzgmhZWJEt4PTViHsMkv6ZMj'
+      )
+      // .then((res) => console.log(res.data));
+      .then((res) => setNasaPic(res.data));
+  }, []);
 
   return (
     <div className='home'>
-      <Navbar />
       <div className='homeContainer'></div>
       <video src={videoBg} loop autoPlay muted />
       <div className='container'>
@@ -52,7 +50,7 @@ function Home() {
             </select>
           </label>
         </form>
-        <todayPic nasaPic={nasaPic} />
+        <TodayPic nasaPic={nasaPic} />
       </div>
     </div>
   );

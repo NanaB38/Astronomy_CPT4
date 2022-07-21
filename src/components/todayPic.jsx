@@ -4,9 +4,12 @@ export default function todayPic({ nasaPic }) {
   return (
     nasaPic && (
       <>
-        <div className='flex w-full'>
-          <img src={nasaPic.url} alt={nasaPic.title} />
-          <p>todayPic</p>
+        <div className='fixed flex justify-center flex-col w-[50%] h-full'>
+          <div className='w-[50%] m-auto'>
+            {' '}
+            <img className='' src={nasaPic.url} alt={nasaPic.title} />
+            <p className='text-black'>{nasaPic.title}</p>
+          </div>
         </div>
       </>
     )

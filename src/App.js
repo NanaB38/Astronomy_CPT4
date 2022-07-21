@@ -5,7 +5,7 @@ import Share from './pages/Share';
 import './styles/globals.css';
 import './styles/index.css';
 
-export default function Main() {
+export default function App() {
   return (
     <>
       <div className='main'>
