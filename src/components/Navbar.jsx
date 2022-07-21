@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import '../styles/globals.css';
 
-const Header = () => {
+const Navbar = () => {
   // const [links, setLinks] = useState(false);
+  const [picNasa, setPicNasa] = useState(false);
 
-  // const handleLinks = () => {
-  //   setLinks(!links);
-  // };
+  const handleShowPic = () => {
+    setPicNasa(!picNasa);
+  };
 
   return (
     <nav className='navbar'>
@@ -18,10 +18,7 @@ const Header = () => {
           </Link>
         </li>
         <li>
-          <Link to='/todayPic' className='navbarLi'>
-            {/* onClick={handleLinks} */}
-            Astronomy Picture of the day
-          </Link>
+          <div onClick={handleShowPic}>Astronomy Picture of the day</div>
         </li>
         <li>
           <Link to='/' className='navbarLi'>
@@ -33,4 +30,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default Navbar;

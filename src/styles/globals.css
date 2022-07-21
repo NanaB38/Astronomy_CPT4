@@ -86,8 +86,20 @@ video {
   align-items: center;
 }
 
+/* ----- TodayPic -----*/
+
 @media only screen and (max-width: 860px) {
   .navLinks {
     visibility: hidden;
   }
+}
+
+.footer {
+  position: fixed;
+  text-align: center;
+  bottom: 0;
+  margin: 0;
+  padding: 0;
+  background-color: black;
+  width: 100vw;
 }
