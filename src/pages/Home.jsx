@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/globals.css';
-// import videoBg from '../assets/videoBg.mp4';
+import videoBg from '../assets/videoBg.mp4';
 import nasaLogo from '../assets/images/nasa-logo-1280x1059.png';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ function Home() {
   return (
     <div className='home'>
       <div className='homeContainer'></div>
-      {/* <video src={videoBg} loop autoPlay muted /> */}
+      <video src={videoBg} loop autoPlay muted />
       <div className='container'>
         <div className='logoNasa'>
           <Link to='/'>
