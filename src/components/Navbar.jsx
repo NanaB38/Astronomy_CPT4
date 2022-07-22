@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link } from 'react-router-dom';
 
 const Navbar = () => {
@@ -16,7 +16,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to='/share' className='navbarLi'>
+          <Link to='/Share' className='navbarLi'>
             Share a picture
           </Link>
         </li>

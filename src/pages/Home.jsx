@@ -7,6 +7,7 @@ import TodayPic from '../components/TodayPic';
 import PlanetDetails from '../components/PlanetDetails';
 import { useParams } from 'react-router-dom';
 import '../styles/globals.css';
+import '../styles/details.css';
 
 function Home() {
   const [nasaPic, setNasaPic] = useState(false);
@@ -43,6 +44,7 @@ function Home() {
   const handleShowPlanet = (value) => {
     setModalPlanet(!modalPlanet);
     setInfoPlanet(value);
+    // handlePlanetS();
   };
 
   const changeView = () => {
@@ -50,8 +52,8 @@ function Home() {
     setHome(!home);
   };
 
-  const handlePlanet = () => {
-    setShowPlanet(!showPlanet);
+  const handlePlanetS = () => {
+    setModalPlanet(!modalPlanet);
     setHome(!home);
   };
 
@@ -99,8 +101,6 @@ function Home() {
                     key={results.id}
                     id={results.id}
                     results={results}
-                    showPlanet={showPlanet}
-                    setShowPlanet={setShowPlanet}
                     setHome={setHome}
                     home={home}
                   />

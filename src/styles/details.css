@@ -1,0 +1,19 @@
+.planet-details {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  margin-top: 5%;
+}
+
+.planet-container {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.planet-img {
+  max-width: 30vw;
+}
