@@ -1,13 +1,21 @@
 import React from 'react';
+import { AiOutlineClose } from 'react-icons/ai';
 
-const PlanetDetails = ({ planets, modalPlanet }) => {
+const PlanetDetails = ({ results, showPlanet, setShowPlanet }) => {
+  const handlePlanet = () => {
+    setShowPlanet(!showPlanet);
+  };
   return (
     <>
-      {modalPlanet && (
+      {showPlanet && (
         <div className='planet-details'>
-          <h1>{planets.name}</h1>
-          <img src={planets.picture} alt={planets.name} />
-          <p>{planets.details}</p>
+          <div className='close-button' onClick={handlePlanet}></div>
+          <AiOutlineClose />
+          <div>
+            <h1>{results.name}</h1>
+            <img src={results.picture} alt={results.name} />
+            <p>{results.details}</p>
+          </div>
         </div>
       )}
     </>

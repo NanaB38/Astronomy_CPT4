@@ -19,7 +19,7 @@
 .title-share {
   margin: 3%;
   text-align: center;
-  width: 80%;
+  width: 90%;
 }
 
 .buttons {
@@ -28,6 +28,7 @@
 
 #share-it {
   width: 100%;
+  margin: 3%;
 }
 
 .pics-container {
@@ -38,17 +39,19 @@
 }
 
 .pics-list {
+  width: 25vw;
   align-items: center;
   justify-content: center;
   margin-right: 3%;
 }
 
-.pics-list {
-  width: 25vw;
+.pics-list:hover {
+  transform: scale(1.2);
 }
 
 .planet-name {
   font-size: xx-large;
+  color: rgb(175, 194, 220);
 }
 
 .planet-det {
@@ -57,4 +60,25 @@
 
 .delete-btn:hover {
   cursor: pointer;
+}
+
+.share-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin: 2%;
+}
+
+.label-name {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 3%;
+}
+
+.input {
+  width: 25vw;
+  border-radius: 10px;
 }

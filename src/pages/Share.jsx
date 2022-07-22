@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import '../styles/index.css';
 import '../styles/share.css';
 import { AiOutlineDelete } from 'react-icons/ai';
 
@@ -38,7 +37,6 @@ function Share() {
     axios
       .delete(`http://localhost:3001/planets/${id}`)
       .then(() => setPics(pics.filter((p) => id !== p.id)))
-
       .catch((err) => console.error(err));
   };
 
@@ -51,12 +49,12 @@ function Share() {
       <div className='share'>
         <div className='share-container'>
           <h2 className='title-share'>
-            If you like, you can share an astronomy picture of GIF to the Wild
-            Code School Community
+            If you like, you can share an astronomy picture of GIF to the <br />
+            Wild Code School Community 🌎
           </h2>
           <h3>
             Here is a selection the most beautiful pictures of our planets, the
-            sky and the moon...
+            sky, the moon and beyond...
           </h3>
           <button className='buttons' type='button' onClick={handleSharePic}>
             Share a picture
@@ -64,58 +62,62 @@ function Share() {
         </div>
         <>
           {toShare && (
-            <form className='form-share' onSubmit={handleSubmitPic}>
-              <div>
-                <label htmlFor='name' className='label_form'>
-                  Name
-                </label>
-                <textarea
-                  type='text'
-                  name='name'
-                  className='input-name'
-                  placeholder='Enter a title'
-                  value={form.name}
-                  onChange={updateDisplayPic}
-                  required
-                />
+            <div className='share-container'>
+              <div className='form-share'>
+                <form onSubmit={handleSubmitPic}>
+                  <div className='label-name'>
+                    <label htmlFor='name' className='label_form'>
+                      Name
+                    </label>
+                    <textarea
+                      type='text'
+                      name='name'
+                      className='input'
+                      placeholder='Enter a title'
+                      value={form.name}
+                      onChange={updateDisplayPic}
+                      required
+                    />
+                  </div>
+                  <div className='label-name'>
+                    <label htmlFor='details' className='label_form'>
+                      Details
+                    </label>
+                    <textarea
+                      type='text'
+                      name='details'
+                      className='input'
+                      placeholder='Enter some details about the picture'
+                      value={form.details}
+                      onChange={updateDisplayPic}
+                      required
+                    />
+                  </div>
+                  <div className='label-name'>
+                    <label htmlFor='details' className='label_form'>
+                      Picture
+                    </label>
+                    <textarea
+                      type='text'
+                      name='picture'
+                      className='input'
+                      placeholder='Enter picture/gif link'
+                      value={form.picture}
+                      onChange={updateDisplayPic}
+                      required
+                    />
+                  </div>
+                  <button
+                    type='submit'
+                    onClick={handleSubmitPic}
+                    className='buttons'
+                    id='share-it'
+                  >
+                    Share it !
+                  </button>
+                </form>
               </div>
-              <div>
-                <label htmlFor='details' className='label_form'>
-                  Details
-                </label>
-                <textarea
-                  type='text'
-                  name='details'
-                  className='input-details'
-                  placeholder='Enter some details about the picture'
-                  value={form.details}
-                  onChange={updateDisplayPic}
-                  required
-                />
-              </div>
-              <div>
-                <label htmlFor='details' className='label_form'>
-                  Details
-                </label>
-                <textarea
-                  type='text'
-                  name='picture'
-                  className='input-pic'
-                  placeholder='enter picture/gif link'
-                  value={form.picture}
-                  onChange={updateDisplayPic}
-                  required
-                />
-              </div>
-              <button
-                type='submit'
-                onClick={handleSubmitPic}
-                className='buttons'
-                id='share-it'
-              >
-                Share it !
-              </button>
-            </form>
+            </div>
           )}
         </>
 

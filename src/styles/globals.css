@@ -27,12 +27,13 @@ button {
   background: rgb(186, 219, 255);
   background: linear-gradient(
     90deg,
-    rgba(186, 219, 255, 1) 0%,
+    rgb(180, 216, 255) 0%,
     rgba(0, 59, 150, 1) 35%,
-    rgba(2, 8, 19, 1) 100%
+    rgb(2, 11, 29) 100%
   );
   width: 30%;
   padding: 10px;
+  font-size: large;
 }
 
 button:hover {
@@ -48,6 +49,10 @@ button:hover {
   flex-direction: column;
   justify-content: center;
   align-items: center;
+}
+
+.titleHome {
+  margin: 0;
 }
 
 .homeContainer {
@@ -90,16 +95,18 @@ button:hover {
 .navbarLi {
   text-decoration: none;
   padding: 15px;
+  color: white;
 }
 
 .navbarLi:hover {
   cursor: pointer;
-  color: rgb(113, 134, 255);
+  color: rgb(185, 200, 255);
   font-size: 1.2em;
 }
 
 .navLinks {
   list-style-type: none;
+  text-decoration: none;
   display: flex;
   flex-direction: row;
   align-items: center;

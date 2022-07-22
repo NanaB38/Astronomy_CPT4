@@ -1,22 +1,22 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import axios from 'axios';
 import videoBg from '../assets/videoBg.mp4';
 import nasaLogo from '../assets/images/nasa-logo-1280x1059.png';
 import { Link } from 'react-router-dom';
 import TodayPic from '../components/TodayPic';
 import PlanetDetails from '../components/PlanetDetails';
-// import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import '../styles/globals.css';
-import '../styles/index.css';
 
 function Home() {
-  // const { id } = useParams();
   const [nasaPic, setNasaPic] = useState(false);
   const [planetList, setPlanetList] = useState([]);
-  const [filterPlanet, setFilterPlanet] = useState('');
-  const [infoPlanet, setInfoPlanet] = useState([]);
+  const [infoPlanet, setInfoPlanet] = useState('');
   const [modalPlanet, setModalPlanet] = useState(false);
   const [home, setHome] = useState(true);
+  const [results, setResults] = useState([]);
+  const [showPlanet, setShowPlanet] = useState(true);
+  const params = useParams();
 
   useEffect(() => {
     axios
@@ -24,25 +24,34 @@ function Home() {
       .then((res) => setPlanetList(res.data));
   }, []);
 
-  const showPlanets = () => {
+  useEffect(() => {
     axios
-      .get('http://localhost:3001/planets')
-      .then((res) => setInfoPlanet(res.data))
-      .catch(() => console.error('selecter is not working'));
-  };
+      .get(`http://localhost:3001/planets/${infoPlanet}`)
+      .then((res) => res.data)
+      .then((data) => {
+        setResults(data[0]);
+      })
+      .catch(() => {
+        alert('No search results');
+      });
+  }, [infoPlanet]);
 
-  const handleShowPlanet = () => {
-    showPlanets();
+  console.log(infoPlanet);
+
+  console.log(results);
+
+  const handleShowPlanet = (value) => {
     setModalPlanet(!modalPlanet);
-  };
-
-  const handleChange = () => {
-    setFilterPlanet();
-    handleShowPlanet();
+    setInfoPlanet(value);
   };
 
   const changeView = () => {
     setNasaPic(!nasaPic);
+    setHome(!home);
+  };
+
+  const handlePlanet = () => {
+    setShowPlanet(!showPlanet);
     setHome(!home);
   };
 
@@ -67,14 +76,16 @@ function Home() {
               <label htmlFor='selectPlanet' className=''>
                 <select
                   id='selectPlanet'
-                  onChange={(e) => handleChange(e.target.value)}
+                  onChange={(e) => handleShowPlanet(e.target.value)}
                 >
-                  <option value=''>Choose an astronomy picture</option>
-                  <option key='id' value='all'>
-                    All planets
+                  <option key='' value=''>
+                    Choose an astronomy picture
                   </option>
+                  {/* <option key='id' value='all'>
+                    All planets
+                  </option> */}
                   {planetList.map((pl) => (
-                    <option key={pl.id} value={pl.name}>
+                    <option key={pl.id} value={pl.value}>
                       {pl.name}
                     </option>
                   ))}
@@ -82,20 +93,19 @@ function Home() {
               </label>
             </form>
             <ul className='planets-list'>
-              {infoPlanet
-                .filter((fil) =>
-                  fil.name === 'Hearth' ? modalPlanet : !modalPlanet
-                )
-                .map((planets) => (
-                  <li className='planet-item'>
-                    <PlanetDetails
-                      key={planets.id}
-                      id={planets.id}
-                      planets={planets}
-                      modalPlanet={modalPlanet}
-                    />
-                  </li>
-                ))}
+              {modalPlanet && (
+                <li className='planet-item'>
+                  <PlanetDetails
+                    key={results.id}
+                    id={results.id}
+                    results={results}
+                    showPlanet={showPlanet}
+                    setShowPlanet={setShowPlanet}
+                    setHome={setHome}
+                    home={home}
+                  />
+                </li>
+              )}
             </ul>
             <p className='or'>OR</p>
             <button type='button' onClick={changeView}>
