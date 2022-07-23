@@ -2,8 +2,9 @@ import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Home from '../pages/Home';
 import Share from '../pages/Share';
-import '../styles/globals.css';
+import '../styles/index.css';
 import '../styles/share.css';
+import '../styles/details.css';
 
 export default function Main() {
   return (
@@ -11,6 +12,7 @@ export default function Main() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/share' element={<Share />} />
+        <Route path='/:id' element={<Home />} />
       </Routes>
     </main>
   );

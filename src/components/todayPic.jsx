@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { AiOutlineClose } from 'react-icons/ai';
-import '../styles/globals.css';
+import '../styles/index.css';
 
 export default function TodayPic({ nasaPic, setNasaPic, home, setHome }) {
   useEffect(() => {
@@ -33,7 +33,7 @@ export default function TodayPic({ nasaPic, setNasaPic, home, setHome }) {
                 src={nasaPic.url}
                 alt={nasaPic.title}
               />
-              <div className=''>
+              <div className='text-green'>
                 <p className='details-pic'>{nasaPic.explanation}</p>
               </div>
             </div>

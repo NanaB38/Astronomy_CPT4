@@ -1,7 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import '../styles/index.css';
 
-const Navbar = () => {
+const Navbar = ({ nasaPic }) => {
   return (
     <nav className='navbar'>
       <ul className='navLinks'>
@@ -11,9 +12,7 @@ const Navbar = () => {
           </Link>
         </li>
         <li>
-          <Link to='/TodayPic' className='navbarLi'>
-            Astronomy Picture of the day
-          </Link>
+          <div className='navbarLi'>Astronomy Picture of the day</div>
         </li>
         <li>
           <Link to='/Share' className='navbarLi'>

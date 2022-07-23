@@ -5,8 +5,8 @@ import nasaLogo from '../assets/images/nasa-logo-1280x1059.png';
 import { Link } from 'react-router-dom';
 import TodayPic from '../components/TodayPic';
 import PlanetDetails from '../components/PlanetDetails';
-import { useParams } from 'react-router-dom';
-import '../styles/globals.css';
+// import { useParams } from 'react-router-dom';
+import '../styles/index.css';
 import '../styles/details.css';
 
 function Home() {
@@ -16,18 +16,18 @@ function Home() {
   const [modalPlanet, setModalPlanet] = useState(false);
   const [home, setHome] = useState(true);
   const [results, setResults] = useState([]);
-  const [showPlanet, setShowPlanet] = useState(true);
-  const params = useParams();
+  // const [showPlanet, setShowPlanet] = useState(true);
+  // const params = useParams();
 
   useEffect(() => {
     axios
-      .get('http://localhost:3001/planets')
+      .get('http://localhost:3001/planets_nasa')
       .then((res) => setPlanetList(res.data));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3001/planets/${infoPlanet}`)
+      .get(`http://localhost:3001/planets_nasa/${infoPlanet}`)
       .then((res) => res.data)
       .then((data) => {
         setResults(data[0]);
@@ -61,7 +61,7 @@ function Home() {
     <div className='home'>
       <div className='homeContainer'></div>
       <video src={videoBg} loop autoPlay muted />
-      <div className='container'>
+      <div className='container '>
         <div className='logoNasa'>
           <Link to='/'>
             <img src={nasaLogo} alt='nasa-logo' width={'90px'} />
@@ -70,7 +70,7 @@ function Home() {
         {home && (
           <>
             <h1 className='titleHome'>Welcome Earthlings !</h1>
-            <p className='intro'>
+            <p className='text-3xl font-bold'>
               In this app, you can find incredible pictures of planets and
               galaxies
             </p>
@@ -94,9 +94,9 @@ function Home() {
                 </select>
               </label>
             </form>
-            <ul className='planets-list'>
+            <div className='planets-list'>
               {modalPlanet && (
-                <li className='planet-item'>
+                <div className='planet-item'>
                   <PlanetDetails
                     key={results.id}
                     id={results.id}
@@ -104,9 +104,9 @@ function Home() {
                     setHome={setHome}
                     home={home}
                   />
-                </li>
+                </div>
               )}
-            </ul>
+            </div>
             <p className='or'>OR</p>
             <button type='button' onClick={changeView}>
               See Astronomy Picture of the day

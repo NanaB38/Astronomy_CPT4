@@ -4,7 +4,7 @@ import '../styles/share.css';
 import { AiOutlineDelete } from 'react-icons/ai';
 
 function Share() {
-  const [sharePic, setSharePic] = useState(false);
+  const [setSharePic] = useState(false);
   const [pics, setPics] = useState([]);
   const [form, setForm] = useState({ name: '', picture: '', details: '' });
   // const [deletePic, setDeletePic] = useState(false);

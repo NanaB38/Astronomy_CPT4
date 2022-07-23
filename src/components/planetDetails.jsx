@@ -14,7 +14,7 @@ const PlanetDetails = ({ results, home, setHome }) => {
           <div>
             <h1>{results.name}</h1>
             <div className='planet-img'>
-              <img src={results.picture} alt={results.name} />
+              <img className="img-details" src={results.picture} alt={results.name} />
             </div>
             <p>{results.details}</p>
           </div>
