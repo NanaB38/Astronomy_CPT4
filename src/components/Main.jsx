@@ -12,7 +12,6 @@ export default function Main() {
       <Routes>
         <Route path='/' element={<Home />} />
         <Route path='/share' element={<Share />} />
-        <Route path='/:id' element={<Home />} />
       </Routes>
     </main>
   );

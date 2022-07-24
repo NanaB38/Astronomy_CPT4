@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import axios from 'axios';
 import '../styles/share.css';
 import { AiOutlineDelete } from 'react-icons/ai';
@@ -7,23 +8,29 @@ function Share() {
   const [setSharePic] = useState(false);
   const [pics, setPics] = useState([]);
   const [form, setForm] = useState({ name: '', picture: '', details: '' });
-  // const [deletePic, setDeletePic] = useState(false);
   const [toShare, setToShare] = useState(false);
+  const { id } = useParams();
 
-  useEffect(() => {
+  const fetchPosts = () => {
     axios.get('http://localhost:3001/planets').then((res) => setPics(res.data));
-  }, []);
+  };
 
   const handleSubmitPic = (e) => {
     e.preventDefault();
+    const source = axios.CancelToken.source();
     axios
       .post('http://localhost:3001/planets', {
         name: form.name,
         picture: form.picture,
         details: form.details,
       })
-      .then((res) => setSharePic((currentPic) => [...currentPic, res.data]));
-    setForm({ name: '', picture: '', details: '' });
+      .then(() => {
+        fetchPosts();
+      });
+
+    return () => {
+      source.cancel('Component got unmounted');
+    };
   };
 
   const updateDisplayPic = (e) => {
@@ -33,11 +40,19 @@ function Share() {
     });
   };
 
-  const handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:3001/planets/${id}`)
-      .then(() => setPics(pics.filter((p) => id !== p.id)))
-      .catch((err) => console.error(err));
+  useEffect(() => {
+    fetchPosts();
+  }, []);
+
+  // useEffect(() => {
+  //   axios.get(`http://localhost:3001/planets/${id}`).then((res) => {
+  //     setForm(res.data);
+  //   });
+  // }, []);
+
+  const handleDelete = () => {
+    axios.delete(`http://localhost:3001/planets/${id}`);
+    // .then(() => setPics(pics.filter((p) => id !== p.id)))
   };
 
   const handleSharePic = () => {
@@ -127,7 +142,7 @@ function Share() {
             <div>
               <p className='planet-name'>{pic.name}</p>
               <p className='planet-det'>{pic.details}</p>
-              <div onClick={() => handleDelete()} className='delete-btn'>
+              <div onClick={handleDelete} className='delete-btn'>
                 <AiOutlineDelete />
               </div>
             </div>
