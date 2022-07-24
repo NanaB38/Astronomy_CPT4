@@ -141,7 +141,6 @@ button:hover {
 
 .close-button {
   position: absolute;
-  display: flex;
   top: 0;
   right: 0;
 }
@@ -155,6 +154,7 @@ button:hover {
 }
 .details-pic {
   text-align: justify;
+  padding: 10% 2%;
 }
 
 .footer {
@@ -188,5 +188,22 @@ button:hover {
   #btn-home {
     width: 75vw;
     font-size: medium;
+  }
+  .today-pic {
+    position: relative;
+    width: 100%;
+    height: fit-content;
+    background-color: black;
+  }
+  .today-img {
+    width: 100%;
+    margin-top: 70%;
+  }
+  .close-button {
+    width: 30px;
+    position: fixed;
+    top: 0;
+    margin: 3%;
+    z-index: 1000;
   }
 }
