@@ -9,7 +9,8 @@ function Share() {
   const [pics, setPics] = useState([]);
   const [form, setForm] = useState({ name: '', picture: '', details: '' });
   const [toShare, setToShare] = useState(false);
-  const { id } = useParams();
+  const [idToDelete, setIdToDelete] = useState('');
+  // const { id } = useParams();
 
   const fetchPosts = () => {
     axios.get('http://localhost:3001/planets').then((res) => setPics(res.data));
@@ -27,7 +28,6 @@ function Share() {
       .then(() => {
         fetchPosts();
       });
-
     return () => {
       source.cancel('Component got unmounted');
     };
@@ -44,19 +44,22 @@ function Share() {
     fetchPosts();
   }, []);
 
-  // useEffect(() => {
-  //   axios.get(`http://localhost:3001/planets/${id}`).then((res) => {
-  //     setForm(res.data);
-  //   });
-  // }, []);
-
-  const handleDelete = () => {
-    axios.delete(`http://localhost:3001/planets/${id}`);
-    // .then(() => setPics(pics.filter((p) => id !== p.id)))
-  };
-
   const handleSharePic = () => {
     setToShare(!toShare);
+  };
+
+  // const handleDelete = () => {
+  //   axios
+  //     .delete(`http://localhost:3001/planets/${id}`)
+
+  //     .finally(() => setPics(console.log(pics)));
+  // };
+
+  const handleDelete = (id) => {
+    axios
+      .delete(`http://localhost:3001/planets/${id}`)
+      .then(() => setPics(pics.filter((p) => id !== p.id)))
+      .catch((err) => console.log());
   };
 
   return (
@@ -139,10 +142,14 @@ function Share() {
         {pics.map((pic) => (
           <div className='pics-container' key={pic.id} id={pic.id}>
             <img src={pic.picture} alt={pic.name} className='pics-list' />
-            <div>
+            <div className='planet-text'>
               <p className='planet-name'>{pic.name}</p>
               <p className='planet-det'>{pic.details}</p>
-              <div onClick={handleDelete} className='delete-btn'>
+              <div
+                type='button'
+                onClick={() => handleDelete(idToDelete)}
+                className='delete-btn'
+              >
                 <AiOutlineDelete />
               </div>
             </div>

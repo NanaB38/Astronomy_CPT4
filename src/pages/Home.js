@@ -5,7 +5,6 @@ import nasaLogo from '../assets/images/nasa-logo-1280x1059.png';
 import { Link } from 'react-router-dom';
 import TodayPic from '../components/TodayPic';
 import PlanetDetails from '../components/PlanetDetails';
-// import { useParams } from 'react-router-dom';
 import '../styles/index.css';
 import '../styles/details.css';
 
@@ -16,14 +15,7 @@ function Home() {
   const [modalPlanet, setModalPlanet] = useState(false);
   const [home, setHome] = useState(true);
   const [results, setResults] = useState([]);
-  // const [showPlanet, setShowPlanet] = useState(true);
   // const params = useParams();
-
-  useEffect(() => {
-    axios
-      .get('http://localhost:3001/planets_nasa')
-      .then((res) => setPlanetList(res.data));
-  }, []);
 
   useEffect(() => {
     axios
@@ -37,23 +29,19 @@ function Home() {
       });
   }, [infoPlanet]);
 
-  console.log(infoPlanet);
-
-  console.log(results);
+  useEffect(() => {
+    axios
+      .get('http://localhost:3001/planets_nasa')
+      .then((res) => setPlanetList(res.data));
+  }, []);
 
   const handleShowPlanet = (value) => {
     setModalPlanet(!modalPlanet);
     setInfoPlanet(value);
-    // handlePlanetS();
   };
 
   const changeView = () => {
     setNasaPic(!nasaPic);
-    setHome(!home);
-  };
-
-  const handlePlanetS = () => {
-    setModalPlanet(!modalPlanet);
     setHome(!home);
   };
 
@@ -70,12 +58,12 @@ function Home() {
         {home && (
           <>
             <h1 className='titleHome'>Welcome Earthlings !</h1>
-            <p className='text-3xl font-bold'>
+            <p id='intro-home'>
               In this app, you can find incredible pictures of planets and
               galaxies
             </p>
             <form className='selecter'>
-              <label htmlFor='selectPlanet' className=''>
+              <label htmlFor='selectPlanet' className='select-one'>
                 <select
                   id='selectPlanet'
                   onChange={(e) => handleShowPlanet(e.target.value)}
@@ -94,21 +82,21 @@ function Home() {
                 </select>
               </label>
             </form>
-            <div className='planets-list'>
+            <div className={modalPlanet ? 'planets-list' : ''}>
               {modalPlanet && (
                 <div className='planet-item'>
                   <PlanetDetails
                     key={results.id}
                     id={results.id}
                     results={results}
-                    setHome={setHome}
-                    home={home}
+                    modalPlanet={modalPlanet}
+                    setModalPlanet={setModalPlanet}
                   />
                 </div>
               )}
             </div>
             <p className='or'>OR</p>
-            <button type='button' onClick={changeView}>
+            <button type='button' id='btn-home' onClick={changeView}>
               See Astronomy Picture of the day
             </button>
           </>

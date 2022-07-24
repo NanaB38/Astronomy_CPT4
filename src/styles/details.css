@@ -24,10 +24,6 @@
   align-items: center;
 }
 
-/* .planet-img {
-  width: 150px;
-} */
-
 .img-details {
   width: 60vw;
 }
@@ -42,4 +38,8 @@
   flex-direction: column;
   align-items: center;
   margin-top: 5%;
+}
+
+.hide-planet {
+  display: none;
 }

@@ -58,20 +58,12 @@ button:hover {
   margin: 0;
 }
 
-/* .homeContainer {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.2);
-} */
-
 .navbar {
   background-color: black;
+
   width: 100%;
   height: 50px;
-  z-index: 40;
+  z-index: 20;
   position: relative;
 }
 
@@ -81,6 +73,7 @@ button:hover {
   left: 0;
   margin: 2%;
   position: absolute;
+  z-index: 30;
 }
 
 #selectPlanet {
@@ -91,7 +84,6 @@ button:hover {
   width: 100%;
   display: flex;
   justify-content: flex-end;
-  z-index: 100 !important;
 }
 
 .navbarLi {
@@ -102,7 +94,7 @@ button:hover {
 
 .navbarLi:hover {
   cursor: pointer;
-  color: rgb(185, 200, 255);
+  color: rgb(139, 165, 255);
   font-size: 1.2em;
 }
 
@@ -112,6 +104,26 @@ button:hover {
   display: flex;
   flex-direction: row;
   align-items: center;
+}
+
+#selectPlanet {
+  padding: 2%;
+  border-radius: 10px;
+  width: 30vw;
+  background-color: rgb(186, 219, 255);
+}
+
+/* .select-one {
+  margin: 10%;
+} */
+
+.or {
+  margin: 20px;
+}
+
+#intro-home {
+  margin: 2%;
+  color: rgb(205, 205, 205);
 }
 
 /* ----- TodayPic -----*/
@@ -126,11 +138,14 @@ button:hover {
   height: 100vh;
   text-align: center;
 }
+
 .close-button {
   position: absolute;
+  display: flex;
   top: 0;
   right: 0;
 }
+
 .close-button:hover {
   cursor: pointer;
   transform: scale(2);
@@ -157,5 +172,21 @@ button:hover {
 @media only screen and (max-width: 860px) {
   .navLinks {
     visibility: hidden;
+  }
+  video {
+    width: 100vw;
+    height: 100vh;
+  }
+  #intro-home {
+    padding: 5%;
+    text-align: justify;
+    text-align: center;
+  }
+  #selectPlanet {
+    width: 75vw;
+  }
+  #btn-home {
+    width: 75vw;
+    font-size: medium;
   }
 }
