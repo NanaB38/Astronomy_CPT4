@@ -135,7 +135,6 @@ function Share() {
 
         {pics.map((pic) => (
           <div className='pics-container' key={pic.id} id={pic.id}>
-            {/* key = id  */}
             <img src={pic.picture} alt={pic.name} className='pics-list' />
             <div className='planet-text'>
               <p className='planet-name'>{pic.name}</p>
